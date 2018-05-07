@@ -42,3 +42,19 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/.vs
+/bin/Debug
+/obj
+/wwwroot/vendor.bundle.js.map
+/wwwroot/vendor.bundle.js
+/wwwroot/styles.bundle.js.map
+/wwwroot/styles.bundle.js
+/wwwroot/polyfills.bundle.js.map
+/wwwroot/polyfills.bundle.js
+/wwwroot/main.bundle.js.map
+/wwwroot/main.bundle.js
+/wwwroot/inline.bundle.js.map
+/wwwroot/inline.bundle.js
+/wwwroot/index.html
+/wwwroot/favicon.ico
+/certs/TempCAAuditBunny.cer
