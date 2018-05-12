@@ -1,0 +1,49 @@
+<mat-card>
+    <h2>Database Logs</h2>
+    <mat-card-content>
+
+
+        <div>
+                  <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  </mat-form-field>
+                </div>
+              
+                <mat-paginator [pageSizeOptions]=pageSizeOptions [pageSize]="15"></mat-paginator>
+                
+              <mat-table [dataSource]="dataSource" matSort>
+              
+
+                <ng-container matColumnDef="databaseLogId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header="databaseLogId">Database Log Id</mat-header-cell>
+                  <mat-cell *matCellDef="let db_logs"> {{db_logs.databaseLogId}} </mat-cell>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="postTime">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header="postTime">Post Time</mat-header-cell>
+                  <mat-cell *matCellDef="let db_logs"> {{db_logs.postTime}} </mat-cell>
+                </ng-container>
+
+
+
+                          <ng-container matColumnDef="tsql">
+                            <mat-header-cell  *matHeaderCellDef mat-sort-header="tsql">Tsql</mat-header-cell>
+                            <mat-cell *matCellDef="let db_logs"> {{db_logs.tsql}} </mat-cell>
+                          </ng-container>
+                  
+
+                      <ng-container matColumnDef="xmlEvent">
+                        <mat-header-cell  *matHeaderCellDef mat-sort-header="xmlEvent">Xml Event</mat-header-cell>
+                        <mat-cell *matCellDef="let db_logs"> {{db_logs.xmlEvent}} </mat-cell>
+                      </ng-container>
+              
+      
+              
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </mat-row>
+                    </mat-table>
+    </mat-card-content>
+</mat-card>

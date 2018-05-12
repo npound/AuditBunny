@@ -1,0 +1,76 @@
+<mat-card>
+  <h2>Product Search</h2>
+  <mat-card-content>
+
+
+
+    <div>
+      <div style="width:500px; display:inline">
+        <mat-form-field s>
+          <input matInput [(ngModel)]="query" placeholder="779,782" />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" style="display:inline" (click)="searchIds()">Search</button>
+    </div>
+
+
+
+    <div>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+    <mat-paginator [pageSizeOptions]=pageSizeOptions [pageSize]="15"></mat-paginator>
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+
+      <ng-container matColumnDef="productId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="productId">Product Id</mat-header-cell>
+        <mat-cell *matCellDef="let prod"> {{prod.productId}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="exists">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="exists">Product Exists</mat-header-cell>
+        <mat-cell *matCellDef="let prod"> {{prod.exists}} </mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="productName">Product Name</mat-header-cell>
+        <mat-cell *matCellDef="let prod"> {{prod.productName}} </mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="productNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="productNumber">Product Number</mat-header-cell>
+        <mat-cell *matCellDef="let prod"> {{prod.productNumber}} </mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="averageStandardCost">
+        <mat-header-cell *matHeaderCellDef>Average Standard Cost / Year (ASC)</mat-header-cell>
+        <mat-cell *matCellDef="let prod">
+          <button *ngIf="prod.exists" mat-raised-button color="primary" (click)="showAvg(prod.averageStandardCost,prod.productName)">Show ASC</button>
+        </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="locationName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="locationName">Location Name</mat-header-cell>
+        <mat-cell *matCellDef="let prod"> {{prod.locationName}} </mat-cell>
+      </ng-container>
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,32 @@
+<mat-card>
+  <h2>Standard Cost Average for {{name}} / Year</h2>
+  <mat-card-content>
+
+
+
+    <mat-paginator [pageSizeOptions]=pageSizeOptions [pageSize]="15"></mat-paginator>
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+
+
+      <ng-container matColumnDef="average">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="average">Standard Cost Average</mat-header-cell>
+        <mat-cell *matCellDef="let pch"> {{pch.average}} </mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="year">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="year">Year</mat-header-cell>
+        <mat-cell *matCellDef="let pch"> {{pch.year}} </mat-cell>
+      </ng-container>
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

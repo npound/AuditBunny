@@ -11,13 +11,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace AuditBunny
+namespace LoanLogics
 {
+
+
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+
+    private static string ConnectionString;
+
+    public Startup(IHostingEnvironment env)
         {
       // Set up configuration sources.
       var builder = new ConfigurationBuilder()
@@ -25,36 +32,34 @@ namespace AuditBunny
           .AddJsonFile("appsettings.json")
           .AddEnvironmentVariables();
       Configuration = builder.Build();
+
+      Startup.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
     }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
         {
 
-      services.AddHttpsRedirection(options =>
-      {
-        options.RedirectStatusCode = StatusCodes.Status301MovedPermanently;
-        options.HttpsPort = 44397;
-      });
+      services.AddDbContext<AdventureWorks2014Context>(options =>
+               options.UseSqlServer(ConnectionString));
 
+      services.AddMvc();
 
       services.Configure<SpaSettings>(Configuration.GetSection("SpaSettings"));
       services.AddMvcCore()
          .AddJsonFormatters();
+
+
 
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<SpaSettings> spaSettings)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-      app.UseHsts();
-      app.UseHttpsRedirection();
+
+
       app.UseDefaultFiles();
       app.UseStaticFiles();
   

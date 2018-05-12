@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <AssemblyName>LoanLogics</AssemblyName>
+    <RootNamespace>LoanLogics</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\app\assignment2\standardcostaverage\standardcostaverage.dialog.ts" />
+    <None Remove="src\app\assignment2\standardcostaverage\standrdcostaverage.dialog.html" />
+    <None Remove="src\app\models\databaselog.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="src\app\assignment2\standardcostaverage\standrdcostaverage.dialog.html" />
+    <TypeScriptCompile Include="src\app\assignment2\standardcostaverage\standardcostaverage.dialog.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\NewFolder\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview2-final" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+</Project>
